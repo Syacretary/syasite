@@ -1,11 +1,22 @@
-
-# Dependencies
+# Node modules
 node_modules/
-__pycache__/
 
 # Environment variables
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Generated files
-script.js
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Utility scripts that might contain sensitive data
+replace-keys.js
