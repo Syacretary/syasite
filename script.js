@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize parallax effect for marine creatures
     initializeParallaxEffect();
     
+    // Initialize theme toggle functionality
+    initializeThemeToggle();
+    
     // Listen for orientation changes
     window.addEventListener('resize', setOrientationClass);
 });
@@ -220,6 +223,34 @@ function showNotification(message, type) {
     setTimeout(() => {
         notificationEl.classList.remove('show');
     }, 4000);
+}
+
+// Function to initialize the dark/light mode toggle
+function initializeThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    
+    // Check for saved theme preference or respect OS preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Apply saved theme or OS preference
+    if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Add click event to theme toggle
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleDarkMode);
+    }
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    const body = document.body;
+    const isDarkMode = body.classList.toggle('dark-mode');
+    
+    // Save preference to localStorage
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
 }
 
 // Add smooth scrolling for all links that have a hash
