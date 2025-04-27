@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme toggle functionality
     initializeThemeToggle();
     
+    // Initialize floating chat
+    initializeFloatingChat();
+    
     // Listen for orientation changes
     window.addEventListener('resize', setOrientationClass);
 });
@@ -480,8 +483,8 @@ function initializeParallaxEffect() {
     }
 }
 
-// Chat with AI functionality
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize Floating Chat
+function initializeFloatingChat() {
     // Chat elements
     const chatButton = document.getElementById('chat-button');
     const chatBox = document.getElementById('chat-box');
@@ -489,6 +492,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('send-message');
     const userInput = document.getElementById('user-message');
     const chatMessages = document.getElementById('chat-messages');
+    
+    if (!chatButton || !chatBox) return; // Exit if elements don't exist
     
     // Gemini API setup
     const API_KEY = "AIzaSyA_LdQ2b3ZRi7Llsf2AWlXMmxT67cWjhVU"; // This will be replaced by the actual API key from environment
