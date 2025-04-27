@@ -818,6 +818,36 @@ h3 {
     border-radius: 15px;
     background-color: #f1f1f1;
     color: var(--text-dark);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.message.typing .message-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.message.typing .message-content::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-dark);
+    border-radius: 50%;
+    animation: typing-dot 1.4s infinite;
+    opacity: 0.3;
+}
+
+@keyframes typing-dot {
+    0%, 20% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
 }
 
 .message.user .message-content {
