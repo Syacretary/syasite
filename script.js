@@ -7,7 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize form handling
     initializeForm();
+    
+    // Set initial orientation class
+    setOrientationClass();
+    
+    // Listen for orientation changes
+    window.addEventListener('resize', setOrientationClass);
 });
+
+// Function to set the orientation class on the body element
+function setOrientationClass() {
+    const isPortrait = window.innerHeight > window.innerWidth;
+    document.body.classList.toggle('portrait', isPortrait);
+    document.body.classList.toggle('landscape', !isPortrait);
+}
 
 // Function to handle navigation between pages
 function initializeNavigation() {
@@ -103,8 +116,11 @@ function initializeForm() {
     }
 }
 
-// Add smooth scrolling for all links
+// Add smooth scrolling for all links that have a hash
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Skip links with just "#" as href
+    if (anchor.getAttribute('href') === '#') return;
+    
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         
