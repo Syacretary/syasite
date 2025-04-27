@@ -447,13 +447,14 @@ body.dark-mode .star {
 
 /* Ocean Credits */
 .ocean-credits {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.8rem;
-    z-index: 50;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .ocean-credits p {
