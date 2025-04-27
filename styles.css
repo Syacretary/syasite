@@ -11,13 +11,14 @@
     --transition: all 0.3s ease;
     --transition-slow: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --transition-fast: all 0.2s ease;
-    --touch-highlight: rgba(249, 177, 110, 0.2);
+    --touch-highlight: transparent;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
