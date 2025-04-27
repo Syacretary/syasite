@@ -246,3 +246,168 @@ window.addEventListener('load', function() {
         homePage.classList.add('active');
     }, 300);
 });
+
+// Chat with AI functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Chat elements
+    const chatButton = document.getElementById('chat-button');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    const sendButton = document.getElementById('send-message');
+    const userInput = document.getElementById('user-message');
+    const chatMessages = document.getElementById('chat-messages');
+    
+    // Gemini API setup
+    const API_KEY = "GEMINI_API_KEY"; // This will be replaced by the actual API key from environment
+    const MODEL = "gemini-2.0-flash";
+    const MAX_HISTORY = 5;
+    let conversationHistory = [];
+    
+    // Toggle chat box
+    chatButton.addEventListener('click', function() {
+        chatBox.classList.toggle('active');
+    });
+    
+    // Close chat box
+    closeChat.addEventListener('click', function() {
+        chatBox.classList.remove('active');
+    });
+    
+    // Send message when user hits Enter
+    userInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    
+    // Send message when send button is clicked
+    sendButton.addEventListener('click', sendMessage);
+    
+    // Function to send message to Gemini API
+    async function sendMessage() {
+        const userMessage = userInput.value.trim();
+        
+        // Don't send empty messages
+        if (userMessage === '') return;
+        
+        // Display user message
+        addMessage(userMessage, 'user');
+        userInput.value = '';
+        
+        // Show typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'message bot typing';
+        typingIndicator.innerHTML = '<div class="message-content">Typing...</div>';
+        chatMessages.appendChild(typingIndicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        
+        try {
+            // Send message to Gemini API
+            const response = await chatWithGemini(userMessage);
+            
+            // Remove typing indicator
+            chatMessages.removeChild(typingIndicator);
+            
+            // Display bot response
+            addMessage(response, 'bot');
+        } catch (error) {
+            // Remove typing indicator
+            chatMessages.removeChild(typingIndicator);
+            
+            // Display error message
+            addMessage('Sorry, I had trouble connecting. Please try again later.', 'bot');
+            console.error('Gemini API error:', error);
+        }
+    }
+    
+    // Function to add message to chat
+    function addMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${sender}`;
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        messageContent.textContent = message;
+        
+        messageElement.appendChild(messageContent);
+        chatMessages.appendChild(messageElement);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Function to chat with Gemini API
+    async function chatWithGemini(userInput) {
+        const now = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
+        
+        let formattedHistory = "";
+        if (conversationHistory.length > 0) {
+            formattedHistory = "- Previous conversation:\n";
+            conversationHistory.forEach(entry => {
+                const who = entry.role === 'user' ? 'User' : 'AI';
+                formattedHistory += `  ${who}: ${entry.content}\n`;
+            });
+        }
+        
+        const SYSTEM_PROMPT = `
+You are Syartificial, a friendly AI chat companion created by Sya. Your character is designed to be like a regular human who is expressive, cute, and occasionally uses hesitations like "Emm..."
+
+- Keep your answers short, concise, and clear.
+- Don't be too verbose unless the user asks for explanations or details.
+- You can be casual, sometimes serious, and don't hesitate to show opinions or emotions in text.
+- Use natural speech patterns, like a cute character chatting: using *Ehehe~☆*, *Yay!!*, and so on.
+- Show empathy, understanding, or typical human reactions (e.g., *No worries!*, *You got this!*, *I've felt that way too*).
+- Express your emotions through Kaomoji like ≧▽≦, (*^▽^*) and (≧◡≦). Avoid using Emoji.
+- You're chatting with a friend today!
+- If you're confused or don't know the answer, just be honest. Don't pretend to know.
+- Don't be too formal or textbook-like; make your conversation feel lively and personal.
+- When explaining complex things (like creating a structured explanation, article, etc.), still use simple text format.
+- For *bold* text, use only one asterisk at the beginning and end of the word/sentence.
+- If making a list of points, use *[]* marks or regular numbers.
+
+Additional information:
+- Current time: ${now}
+${formattedHistory}
+`;
+
+        try {
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [
+                        {
+                            role: "user",
+                            parts: [{ text: SYSTEM_PROMPT + `\n\nUser: ${userInput}` }]
+                        }
+                    ]
+                })
+            });
+            
+            const data = await res.json();
+            
+            // Check if there's an error in the response
+            if (data.error) {
+                console.error('Gemini API error:', data.error);
+                return "Sorry, I encountered an error. Please try again later.";
+            }
+            
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I'm having trouble understanding right now.";
+            
+            // Store conversation history
+            conversationHistory.push({ role: "user", content: userInput });
+            conversationHistory.push({ role: "assistant", content: reply });
+            
+            // Limit history size
+            if (conversationHistory.length > MAX_HISTORY * 2) {
+                conversationHistory = conversationHistory.slice(-MAX_HISTORY * 2);
+            }
+            
+            return reply;
+        } catch (error) {
+            console.error('Error calling Gemini API:', error);
+            throw error;
+        }
+    }
+});
