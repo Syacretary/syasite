@@ -1,0 +1,11 @@
+
+# Dependencies
+node_modules/
+__pycache__/
+
+# Environment variables
+.env
+.env.local
+
+# Generated files
+script.js
