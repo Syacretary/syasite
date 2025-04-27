@@ -50,10 +50,26 @@ function navigateToPage(pageId) {
     // Get all pages
     const pages = document.querySelectorAll('.page');
     
-    // Hide all pages
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
+    // Add touch feedback if it's a touch event
+    if ('ontouchstart' in window) {
+        // Get the currently active page for scroll position
+        const activePage = document.querySelector('.page.active');
+        const scrollPosition = activePage ? activePage.scrollTop : 0;
+        
+        // Hide all pages with transition
+        pages.forEach(page => {
+            page.classList.remove('active');
+            // Store scroll position to restore later if coming back to this page
+            if (page.id) {
+                sessionStorage.setItem(`scroll-${page.id}`, scrollPosition);
+            }
+        });
+    } else {
+        // For non-touch devices, just remove active class
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+    }
     
     // Show the target page
     const targetPage = document.getElementById(pageId);
@@ -61,6 +77,14 @@ function navigateToPage(pageId) {
     // Apply transition
     setTimeout(() => {
         targetPage.classList.add('active');
+        
+        // Restore scroll position if available
+        const storedScrollPosition = sessionStorage.getItem(`scroll-${pageId}`);
+        if (storedScrollPosition) {
+            targetPage.scrollTop = parseInt(storedScrollPosition);
+        } else {
+            targetPage.scrollTop = 0; // Reset to top for new pages
+        }
     }, 50);
 }
 
