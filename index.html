@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Sya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page (Default) -->
+        <section id="home" class="page active">
+            <div class="content">
+                <h1>hi! <span class="gradient-text">i'm sya</span></h1>
+                <p class="subtitle">editor, developer, and ai specialist</p>
+                
+                <div class="nav-grid">
+                    <div class="nav-item" data-page="about">
+                        <div class="icon-container">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                        <p>about</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="social">
+                        <div class="icon-container">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <p>social</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="work">
+                        <div class="icon-container">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <p>work</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="faq">
+                        <div class="icon-container">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <p>faq</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="contact">
+                        <div class="icon-container">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p>contact</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="other">
+                        <div class="icon-container">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>other</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>About Me</h2>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="Minimal workspace">
+                    </div>
+                    <div class="about-text">
+                        <p>Hello! I'm a passionate editor, developer, and AI specialist with over 5 years of experience creating digital solutions that merge creativity with technology.</p>
+                        
+                        <h3>My Skills</h3>
+                        <div class="skills">
+                            <div class="skill-item">
+                                <div class="skill-name">Web Development</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">UI/UX Design</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">AI Implementation</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-name">Content Creation</div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Page -->
+        <section id="social" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Social Media</h2>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-dribbble"></i>
+                        <span>Dribbble</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-behance"></i>
+                        <span>Behance</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Page -->
+        <section id="work" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>My Work</h2>
+                
+                <div class="work-grid">
+                    <div class="work-item">
+                        <div class="work-image">
+                            <img src="https://images.unsplash.com/photo-1471086569966-db3eebc25a59" alt="Work example">
+                        </div>
+                        <h3>AI Content Editor</h3>
+                        <p>An AI-powered content editing platform that helps writers improve their work</p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926');">
+                        </div>
+                        <h3>Portfolio Generator</h3>
+                        <p>Automated portfolio creation tool for creative professionals</p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1579548122080-c35fd6820ecb');">
+                        </div>
+                        <h3>Gradient Design System</h3>
+                        <p>A comprehensive design system focusing on gradient implementations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What services do you offer?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I provide web development, UI/UX design, AI integration, and content editing services. Each project is approached with a focus on clean design and optimal user experience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do you approach new projects?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I begin with a thorough discovery phase to understand your needs, followed by design, development, testing, and deployment stages. Communication is maintained throughout to ensure your vision is realized.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What is your typical timeline?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Project timelines vary based on scope and complexity. Small projects may take 2-3 weeks, while larger ones can extend to several months. I always provide clear estimates before beginning work.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Do you offer maintenance services?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, I offer ongoing maintenance packages to keep your project up-to-date and functioning optimally. These can be tailored to your specific needs and budget.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>hello@sya-portfolio.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>San Francisco, CA</p>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Page -->
+        <section id="other" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Other Interests</h2>
+                
+                <div class="interests">
+                    <div class="interest-item">
+                        <i class="fas fa-book"></i>
+                        <h3>Reading</h3>
+                        <p>I enjoy reading books on technology, design, and science fiction.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>Digital Art</h3>
+                        <p>Creating digital illustrations and exploring new design trends.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-hiking"></i>
+                        <h3>Hiking</h3>
+                        <p>Exploring nature trails and capturing landscape photography.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-chess"></i>
+                        <h3>Strategy Games</h3>
+                        <p>Challenging my mind with chess and other strategic board games.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
