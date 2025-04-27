@@ -109,7 +109,7 @@ function initializeFAQ() {
     });
 }
 
-// Function to handle form submission
+// Function to handle form submission with Telegram integration
 function initializeForm() {
     const contactForm = document.querySelector('.contact-form');
     
@@ -124,20 +124,99 @@ function initializeForm() {
             
             // Basic validation
             if (!name || !email || !message) {
-                alert('Please fill out all fields');
+                showNotification('Please fill out all fields', 'error');
                 return;
             }
             
-            // Simulate form submission - in a real app, you would send this to a server
-            console.log('Form submitted:', { name, email, message });
+            // Email validation
+            if (!isValidEmail(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                return;
+            }
             
-            // Show success message
-            alert('Thank you for your message! I will get back to you soon.');
-            
-            // Reset the form
-            contactForm.reset();
+            // Send to Telegram
+            sendToTelegram(name, email, message);
         });
     }
+}
+
+// Email validation function
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Function to send message to Telegram
+async function sendToTelegram(name, email, message) {
+    const TOKEN = "7544492723:AAGLIV7UEdLmV43WmHBv_aQvrC-bwyXhJ-k";
+    const CHAT_ID = "-1002489337132";
+    const URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+    
+    // Format the message for Telegram
+    const formattedMessage = `
+🔔 New Contact Message:
+    
+From: ${name}
+Email: ${email}
+Message: ${message}
+    `;
+    
+    try {
+        // Show sending message notification
+        showNotification('Sending message...', 'info');
+        
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: formattedMessage,
+                parse_mode: 'HTML'
+            }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+            // Show success message
+            showNotification('Thank you for your message! I will get back to you soon.', 'success');
+            
+            // Reset the form
+            document.querySelector('.contact-form').reset();
+        } else {
+            console.error('Telegram API error:', data);
+            showNotification(`Error sending message: ${data.description}`, 'error');
+        }
+    } catch (error) {
+        console.error('Send to Telegram error:', error);
+        showNotification('Could not send message. Please try again later.', 'error');
+    }
+}
+
+// Function to show notification
+function showNotification(message, type) {
+    // Check if notification element exists, create if not
+    let notificationEl = document.getElementById('notification');
+    
+    if (!notificationEl) {
+        notificationEl = document.createElement('div');
+        notificationEl.id = 'notification';
+        document.body.appendChild(notificationEl);
+    }
+    
+    // Set the notification style based on type
+    notificationEl.className = `notification ${type}`;
+    notificationEl.textContent = message;
+    
+    // Show the notification
+    notificationEl.classList.add('show');
+    
+    // Hide after 4 seconds
+    setTimeout(() => {
+        notificationEl.classList.remove('show');
+    }, 4000);
 }
 
 // Add smooth scrolling for all links that have a hash
