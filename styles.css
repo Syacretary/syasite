@@ -4,8 +4,8 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20vh;
-    min-height: 150px;
+    height: 25vh; /* 1/4 dari tinggi halaman */
+    min-height: 180px;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
@@ -56,7 +56,7 @@
     width: 30px;
     height: 20px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20' fill='%2368b0c9'%3E%3Cpath d='M3,10 C3,6 8,3 15,3 C22,3 27,6 27,10 C27,14 22,17 15,17 C8,17 3,14 3,10 Z'%3E%3C/path%3E%3Ccircle cx='20' cy='8' r='1' fill='white'%3E%3C/circle%3E%3Cpath d='M27,10 L30,7 L30,13 Z' fill='%2368b0c9'%3E%3C/path%3E%3C/svg%3E");
-    top: 30%;
+    bottom: 15%; /* Posisi dari bawah halaman */
     left: -30px;
     animation: fishSwim 15s linear infinite;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
@@ -66,7 +66,7 @@
     width: 25px;
     height: 15px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20' fill='%234b93ad'%3E%3Cpath d='M3,10 C3,6 8,3 15,3 C22,3 27,6 27,10 C27,14 22,17 15,17 C8,17 3,14 3,10 Z'%3E%3C/path%3E%3Ccircle cx='20' cy='8' r='1' fill='white'%3E%3C/circle%3E%3Cpath d='M27,10 L30,7 L30,13 Z' fill='%234b93ad'%3E%3C/path%3E%3C/svg%3E");
-    top: 60%;
+    bottom: 8%; /* Posisi dari bawah halaman */
     left: -25px;
     animation: fishSwim 20s linear infinite 5s;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
@@ -76,7 +76,7 @@
     width: 40px;
     height: 25px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20' fill='%233a7f99'%3E%3Cpath d='M3,10 C3,6 8,3 15,3 C22,3 27,6 27,10 C27,14 22,17 15,17 C8,17 3,14 3,10 Z'%3E%3C/path%3E%3Ccircle cx='20' cy='8' r='1' fill='white'%3E%3C/circle%3E%3Cpath d='M27,10 L30,7 L30,13 Z' fill='%233a7f99'%3E%3C/path%3E%3C/svg%3E");
-    top: 40%;
+    bottom: 20%; /* Posisi dari bawah halaman */
     left: -40px;
     animation: fishSwim 25s linear infinite 8s;
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
@@ -84,7 +84,7 @@
 
 .fish-group {
     position: absolute;
-    top: 15%;
+    bottom: 12%; /* Posisi dari bawah halaman */
     left: -50px;
     width: 50px;
     height: 50px;
@@ -125,7 +125,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    top: 30%;
+    bottom: 18%; /* Posisi dari bawah halaman */
     right: -45px;
     animation: jellyfishFloat 35s linear infinite 10s;
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
@@ -155,7 +155,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    bottom: 30%;
+    bottom: 10%; /* Posisi dari bawah halaman */
     left: -30px;
     animation: seahorseFloat 45s linear infinite 22s;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
