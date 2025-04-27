@@ -648,4 +648,4 @@ ${formattedHistory}
             throw error;
         }
     }
-});
+}
