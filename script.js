@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial orientation class
     setOrientationClass();
     
+    // Initialize parallax effect for marine creatures
+    initializeParallaxEffect();
+    
     // Listen for orientation changes
     window.addEventListener('resize', setOrientationClass);
 });
@@ -246,6 +249,205 @@ window.addEventListener('load', function() {
         homePage.classList.add('active');
     }, 300);
 });
+
+// Function to initialize the parallax effect for marine creatures
+function initializeParallaxEffect() {
+    const marineElements = document.querySelectorAll('.marine-animation > div');
+    const oceanWaves = document.querySelector('.ocean-waves');
+    let lastScrollY = 0;
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+    let ticking = false;
+    
+    // For desktop: mouse movement creates parallax effect
+    document.addEventListener('mousemove', function(e) {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateParallaxOnMouse(lastMouseX, lastMouseY);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // For mobile: use device orientation if available
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', function(e) {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    if (e.beta && e.gamma) {
+                        updateParallaxOnTilt(e.beta, e.gamma);
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+    
+    // For all devices: scroll creates parallax effect
+    document.querySelectorAll('.page').forEach(page => {
+        page.addEventListener('scroll', function() {
+            lastScrollY = this.scrollTop;
+            
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    updateParallaxOnScroll(lastScrollY);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    });
+    
+    // Handle touch movements
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (!ticking) {
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const deltaX = touchX - touchStartX;
+            const deltaY = touchY - touchStartY;
+            
+            window.requestAnimationFrame(function() {
+                updateParallaxOnTouch(deltaX, deltaY);
+                ticking = false;
+            });
+            ticking = true;
+            
+            // Update touch positions
+            touchStartX = touchX;
+            touchStartY = touchY;
+        }
+    });
+    
+    // Update elements position based on mouse movement
+    function updateParallaxOnMouse(mouseX, mouseY) {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        
+        const offsetX = (mouseX - centerX) / centerX; // -1 to 1
+        const offsetY = (mouseY - centerY) / centerY; // -1 to 1
+        
+        marineElements.forEach((element, index) => {
+            // Different layers move at different speeds
+            const depth = 0.05 + (index * 0.01);
+            const translateX = offsetX * depth * 100;
+            const translateY = offsetY * depth * 50;
+            
+            if (element.classList.contains('fish') || element.classList.contains('shark') || 
+                element.classList.contains('jellyfish') || element.classList.contains('octopus') || 
+                element.classList.contains('seahorse') || element.classList.contains('fish-group')) {
+                element.style.transform = `translate(${translateX}px, ${translateY}px)`;
+            } else if (element.classList.contains('bubbles')) {
+                // Make bubbles move slightly more
+                element.querySelectorAll('.bubble').forEach((bubble, i) => {
+                    const bubbleDepth = depth + (i * 0.005);
+                    bubble.style.transform = `translate(${translateX * 1.5}px, ${translateY * 0.5}px)`;
+                });
+            }
+        });
+        
+        // Subtle wave effect
+        if (oceanWaves) {
+            oceanWaves.style.transform = `translate(${offsetX * -10}px, 0)`;
+        }
+    }
+    
+    // Update elements position based on device tilt
+    function updateParallaxOnTilt(beta, gamma) {
+        // Beta is front-to-back tilt (vertical) -180 to 180
+        // Gamma is left-to-right tilt (horizontal) -90 to 90
+        
+        // Normalize to -1 to 1
+        const normalizedBeta = beta / 45; // Assuming ±45° is a comfortable tilt range
+        const normalizedGamma = gamma / 45;
+        
+        marineElements.forEach((element, index) => {
+            // Different layers move at different speeds
+            const depth = 0.1 + (index * 0.02);
+            const translateX = normalizedGamma * depth * 50;
+            const translateY = normalizedBeta * depth * 30;
+            
+            if (element.classList.contains('fish') || element.classList.contains('shark') || 
+                element.classList.contains('jellyfish') || element.classList.contains('octopus') || 
+                element.classList.contains('seahorse') || element.classList.contains('fish-group')) {
+                element.style.transform = `translate(${translateX}px, ${translateY}px)`;
+            } else if (element.classList.contains('bubbles')) {
+                element.querySelectorAll('.bubble').forEach((bubble, i) => {
+                    const bubbleDepth = depth + (i * 0.01);
+                    bubble.style.transform = `translate(${translateX * 1.5}px, ${translateY * 0.5}px)`;
+                });
+            }
+        });
+        
+        // Subtle wave effect
+        if (oceanWaves) {
+            oceanWaves.style.transform = `translate(${normalizedGamma * -15}px, 0)`;
+        }
+    }
+    
+    // Update elements position based on page scroll
+    function updateParallaxOnScroll(scrollY) {
+        marineElements.forEach((element, index) => {
+            // Different layers move at different speeds on scroll
+            const depth = 0.1 + (index * 0.02);
+            const translateY = scrollY * depth * 0.2;
+            
+            if (element.classList.contains('fish') || element.classList.contains('shark') || 
+                element.classList.contains('jellyfish') || element.classList.contains('octopus') || 
+                element.classList.contains('seahorse') || element.classList.contains('fish-group')) {
+                
+                // Get the current transform, which might include X translation from mouse move
+                const currentTransform = element.style.transform || 'translate(0px, 0px)';
+                const currentX = parseFloat(currentTransform.replace(/translate\(([-0-9.]+)px, ([-0-9.]+)px\)/, '$1')) || 0;
+                
+                element.style.transform = `translate(${currentX}px, ${translateY}px)`;
+            }
+        });
+    }
+    
+    // Update elements position based on touch movement
+    function updateParallaxOnTouch(deltaX, deltaY) {
+        marineElements.forEach((element, index) => {
+            // Different layers move at different speeds
+            const depth = 0.05 + (index * 0.01);
+            const translateX = deltaX * depth * 0.5;
+            const translateY = deltaY * depth * 0.5;
+            
+            // Get current transform
+            const currentTransform = element.style.transform || 'translate(0px, 0px)';
+            const match = currentTransform.match(/translate\(([-0-9.]+)px, ([-0-9.]+)px\)/);
+            
+            const currentX = match ? parseFloat(match[1]) : 0;
+            const currentY = match ? parseFloat(match[2]) : 0;
+            
+            // Update position based on touch
+            const newX = currentX + translateX;
+            const newY = currentY + translateY;
+            
+            if (element.classList.contains('fish') || element.classList.contains('shark') || 
+                element.classList.contains('jellyfish') || element.classList.contains('octopus') || 
+                element.classList.contains('seahorse') || element.classList.contains('fish-group')) {
+                element.style.transform = `translate(${newX}px, ${newY}px)`;
+            } else if (element.classList.contains('bubbles')) {
+                element.querySelectorAll('.bubble').forEach((bubble, i) => {
+                    bubble.style.transform = `translate(${newX * 1.2}px, ${newY * 0.5}px)`;
+                });
+            }
+        });
+    }
+}
 
 // Chat with AI functionality
 document.addEventListener('DOMContentLoaded', function() {
