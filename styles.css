@@ -20,12 +20,18 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
     transition: padding 0.3s ease;
 }
 
@@ -84,9 +90,10 @@ h3 {
     position: absolute;
     width: 100%;
     min-height: 100vh;
+    height: 100%;
     left: 0;
     top: 0;
-    padding: 2rem;
+    padding: 2rem 1rem 6rem 1rem; /* Added more padding at bottom to ensure content isn't hidden */
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -95,7 +102,10 @@ h3 {
     align-items: flex-start;
     justify-content: center;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior: contain; /* Prevents scroll chaining */
+    box-sizing: border-box;
 }
 
 .page.active {
