@@ -463,14 +463,16 @@ body.dark-mode .star {
 
 /* Base Styles */
 :root {
-    --gradient-start: #f9b16e;
-    --gradient-middle: #f8d878;
-    --gradient-end: #f8a8a2;
-    --text-dark: #444444;
-    --text-light: #777777;
-    --bg-color: #ffffff;
-    --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+    --gradient-start: #64B5F6;
+    --gradient-middle: #81D4FA;
+    --gradient-end: #4FC3F7;
+    --text-dark: #37474F;
+    --text-light: #607D8B;
+    --bg-color: rgba(255, 255, 255, 0.95);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --shadow-hover: 0 8px 32px rgba(31, 38, 135, 0.25);
     --transition: all 0.3s ease;
     --transition-slow: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --transition-fast: all 0.2s ease;
@@ -489,11 +491,26 @@ body.dark-mode .star {
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     height: 100%;
     position: fixed;
     width: 100%;
     overflow: hidden;
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 body {
@@ -631,8 +648,12 @@ h3 {
     align-items: center;
     cursor: pointer;
     transition: var(--transition-slow);
-    padding: 1rem;
+    padding: 1.5rem;
     -webkit-tap-highlight-color: var(--touch-highlight);
+    background: var(--glass-bg);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
 }
 
 .nav-item:hover {
@@ -1100,14 +1121,26 @@ h3 {
 /* Landscape Mode (Desktop) */
 @media (orientation: landscape) {
     .container {
-        padding: 2rem;
+        padding: 3rem;
     }
     
     .nav-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 25px;
-        max-width: 700px;
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        grid-template-rows: repeat(2, minmax(180px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+    
+    .work-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 3rem;
     }
     
     .icon-container {
