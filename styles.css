@@ -1448,3 +1448,125 @@ h3 {
         right: 0;
     }
 }
+/* Project Details Page */
+.project-details {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.project-details h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.project-description {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-list {
+    display: grid;
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.feature-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item h4 {
+    margin-bottom: 15px;
+    color: #2196F3;
+}
+
+.feature-item ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.feature-item ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.feature-item ul li:before {
+    content: "•";
+    color: #2196F3;
+    position: absolute;
+    left: -15px;
+}
+
+code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.tech-list, .benefits-list {
+    list-style-type: none;
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+.tech-list li, .benefits-list li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.tech-list li:before, .benefits-list li:before {
+    content: "→";
+    color: #2196F3;
+    position: absolute;
+    left: -20px;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25D366;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 30px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-button i {
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .project-details {
+        padding: 10px;
+    }
+    
+    .project-description {
+        padding: 20px;
+    }
+}
