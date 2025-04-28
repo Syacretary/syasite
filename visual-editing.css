@@ -1,0 +1,311 @@
+/* Visual Editing Page Styles */
+
+.project-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.project-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.visual-article {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.intro-section {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.intro-section p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+/* Video Grid Layout */
+.visual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.visual-item {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visual-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Container */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 177.78%; /* 16:9 aspect ratio */
+    overflow: hidden;
+    background-color: #000;
+}
+
+.beat-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0) 70%, 
+        rgba(0, 0, 0, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.video-container:hover .video-overlay {
+    opacity: 1;
+}
+
+.video-container:hover .beat-video {
+    transform: scale(1.02);
+}
+
+.sound-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sound-toggle:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.sound-toggle i {
+    font-size: 1.1rem;
+}
+
+/* Video Info */
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark);
+}
+
+.video-info p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.video-stats {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.video-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.video-stats i {
+    color: var(--gradient-middle);
+}
+
+/* Editing Process Section */
+.editing-process {
+    margin: 4rem 0;
+}
+
+.editing-process h3 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    color: #2E86AB;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+}
+
+.step-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4FB2E5;
+    opacity: 0.3;
+    line-height: 1;
+}
+
+.step-content h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #3A7F99;
+}
+
+.step-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-light);
+}
+
+/* Tools Section */
+.tools-section {
+    margin: 4rem 0;
+}
+
+.tools-section h3 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    color: #2E86AB;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.tool-item {
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tool-item i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.tool-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.tool-item p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* CTA Button */
+.cta-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.instagram-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(221, 42, 123, 0.3);
+}
+
+.instagram-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(221, 42, 123, 0.4);
+}
+
+.instagram-button i {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .visual-article {
+        padding: 1.5rem;
+    }
+    
+    .visual-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-steps,
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .instagram-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-container {
+        padding-bottom: 100%; /* Square ratio for very small screens */
+    }
+}
