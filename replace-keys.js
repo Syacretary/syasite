@@ -10,7 +10,7 @@ let scriptContent = fs.readFileSync(scriptPath, 'utf8');
 const apiKey = process.env.GEMINI_API_KEY || 'YOUR-API-KEY';
 
 // Replace the placeholder with the actual API key
-scriptContent = scriptContent.replace(/const API_KEY = "[^"]+";/, `const API_KEY = "${apiKey}";`);
+scriptContent = scriptContent.replace(/const apiKey = "GEMINI_API_KEY"; \/\/ This line will be replaced/, `const apiKey = "${apiKey}"; // Replaced by script`);
 
 // Write the updated content back to script.js
 fs.writeFileSync(scriptPath, scriptContent);

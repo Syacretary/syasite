@@ -5,6 +5,23 @@
     --accent-color: #184759;
     --background-color: #F0F8FF;
     --text-color: #333333;
+    
+    /* Gradient variables */
+    --gradient-start: var(--primary-color);
+    --gradient-middle: var(--secondary-color);
+    --gradient-end: var(--accent-color);
+    
+    /* UI variables */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+    --text-dark: var(--text-color);
+    --text-light: #666;
+    --touch-highlight: rgba(0, 0, 0, 0);
+    --transition: all 0.3s ease;
+    --transition-slow: all 0.4s ease;
+    --transition-fast: all 0.15s ease;
 }
 
 /* Ocean Animation Styles */
@@ -583,7 +600,7 @@ h3 {
 }
 
 .gradient-text {
-    background: linear-gradient(to right, #4FB2E5, #3A7F99, #64B5F6);
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--accent-color));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

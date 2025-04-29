@@ -652,7 +652,8 @@ function initializeFloatingChat() {
     // Function to chat with Gemini API
     async function chatWithGemini(userInput) {
         try {
-            const apiKey = 'GEMINI_API_KEY'; // To be replaced with actual key
+            // API key will be replaced by replace-keys.js with environment variable
+            const apiKey = "GEMINI_API_KEY"; // This line will be replaced
             const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
             
             // Prepare the request data
