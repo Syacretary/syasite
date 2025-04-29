@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial orientation class
     setOrientationClass();
     
-    // Initialize parallax effect for marine creatures
-    initializeParallaxEffect();
+    // Parallax effect removed for stability
     
     // Theme toggle removed by user request
     
