@@ -1,3 +1,12 @@
+/* CSS Variables for Dynamic Mood Colors */
+:root {
+    --primary-color: #79C7D3;
+    --secondary-color: #3A7F99;
+    --accent-color: #184759;
+    --background-color: #F0F8FF;
+    --text-color: #333333;
+}
+
 /* Ocean Animation Styles */
 .ocean-container {
     position: fixed;
