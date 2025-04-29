@@ -406,52 +406,84 @@ function initializeMarineEasterEggs() {
         const zone = document.createElement('div');
         zone.className = `creature-zone ${position}-zone`;
         zone.style.position = 'fixed';
-        zone.style.width = '100px';
-        zone.style.height = '100px';
-        zone.style.zIndex = '10';
-        zone.style.opacity = '0';
-        zone.style.pointerEvents = 'none';
+        zone.style.width = '150px';  // Increased size for easier clicking
+        zone.style.height = '150px'; // Increased size for easier clicking
+        zone.style.zIndex = '20';    // Higher to be above other elements
+        zone.style.background = 'rgba(100, 181, 246, 0.1)'; // Very subtle background
+        zone.style.borderRadius = '50%';
+        zone.style.cursor = 'pointer';
+        zone.style.pointerEvents = 'auto';
         
         // Position the zone
         switch(position) {
             case 'top-left':
-                zone.style.top = '50px';
-                zone.style.left = '50px';
+                zone.style.top = '80px';
+                zone.style.left = '60px';
+                zone.textContent = "👆 Click here!";
                 break;
             case 'top-right':
-                zone.style.top = '50px';
-                zone.style.right = '50px';
+                zone.style.top = '80px';
+                zone.style.right = '60px';
+                zone.textContent = "👆 Click here!";
                 break;
             case 'mid-left':
                 zone.style.top = '50%';
-                zone.style.left = '50px';
+                zone.style.left = '60px';
                 zone.style.transform = 'translateY(-50%)';
+                zone.textContent = "Scroll down!";
                 break;
             case 'mid-right':
                 zone.style.top = '50%';
-                zone.style.right = '50px';
+                zone.style.right = '60px';
                 zone.style.transform = 'translateY(-50%)';
+                zone.textContent = "Double-click here!";
                 break;
             case 'bottom-left':
-                zone.style.bottom = '100px';
-                zone.style.left = '50px';
+                zone.style.bottom = '120px';
+                zone.style.left = '60px';
+                zone.textContent = "Hover here!";
                 break;
             case 'bottom-right':
-                zone.style.bottom = '100px';
-                zone.style.right = '50px';
+                zone.style.bottom = '120px';
+                zone.style.right = '60px';
+                zone.textContent = "👆 Click here!";
                 break;
             default:
                 zone.style.top = '50%';
                 zone.style.left = '50%';
                 zone.style.transform = 'translate(-50%, -50%)';
+                zone.textContent = "Interact here!";
         }
         
-        // Add subtle hint after 30 seconds for undiscovered zones
-        setTimeout(() => {
-            if (!zone.classList.contains('discovered')) {
-                addDiscoveryHint(zone);
-            }
-        }, 30000 + Math.random() * 30000); // Random time between 30-60 seconds
+        // Style the text to be visible but not intrusive
+        zone.style.display = 'flex';
+        zone.style.alignItems = 'center';
+        zone.style.justifyContent = 'center';
+        zone.style.color = '#3A7F99';
+        zone.style.fontSize = '0.8rem';
+        zone.style.fontWeight = 'bold';
+        zone.style.textAlign = 'center';
+        zone.style.opacity = '0.7';
+        zone.style.textShadow = '0 0 2px white';
+        zone.style.boxShadow = '0 0 10px rgba(100, 181, 246, 0.3)';
+        zone.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        // Add hover effect
+        zone.addEventListener('mouseenter', () => {
+            zone.style.opacity = '1';
+            zone.style.transform = position.includes('mid') ? 'translateY(-50%) scale(1.1)' : 'scale(1.1)';
+        });
+        
+        zone.addEventListener('mouseleave', () => {
+            zone.style.opacity = '0.7';
+            zone.style.transform = position.includes('mid') ? 'translateY(-50%)' : 'scale(1)';
+        });
+        
+        // Add blinking animation to draw attention
+        zone.style.animation = 'pulseZone 2s infinite alternate';
+        
+        // Add immediate hint since it was hard to find
+        addDiscoveryHint(zone);
         
         return zone;
     }
@@ -465,6 +497,20 @@ function initializeMarineEasterEggs() {
         }
         
         zone.style.pointerEvents = 'auto';
+        
+        // Add a descriptive label to make it clearer what to do
+        const label = document.createElement('div');
+        label.textContent = `${creature.name.replace('-', ' ').toUpperCase()} EASTER EGG!`;
+        label.style.position = 'absolute';
+        label.style.bottom = '10px';
+        label.style.left = '50%';
+        label.style.transform = 'translateX(-50%)';
+        label.style.color = '#3A7F99';
+        label.style.fontSize = '10px';
+        label.style.fontWeight = 'bold';
+        label.style.textShadow = '0 0 3px white';
+        label.style.whiteSpace = 'nowrap';
+        zone.appendChild(label);
         
         // Set initial state
         if (creatureElement) {
@@ -700,6 +746,7 @@ function initializeMarineEasterEggs() {
         counter.style.display = 'flex';
         counter.style.alignItems = 'center';
         counter.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.1)';
+        counter.style.cursor = 'pointer';
         
         // Add sea creature icon
         const icon = document.createElement('span');
@@ -712,6 +759,32 @@ function initializeMarineEasterEggs() {
         text.textContent = `${found}/${total} discovered`;
         counter.appendChild(text);
         
+        // Add reset button
+        const resetButton = document.createElement('span');
+        resetButton.innerHTML = ' 🔄';
+        resetButton.style.marginLeft = '5px';
+        resetButton.style.fontSize = '0.8rem';
+        resetButton.style.cursor = 'pointer';
+        resetButton.title = 'Reset Easter Egg discoveries';
+        counter.appendChild(resetButton);
+        
+        // Add reset functionality
+        resetButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (confirm('Reset all Easter Egg discoveries?')) {
+                localStorage.removeItem('discoveredCreatures');
+                showNotification('Easter Eggs have been reset! Refresh the page to find them all again.', 'info');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }
+        });
+        
+        // Make counter clickable to show hint
+        counter.addEventListener('click', () => {
+            showNotification('Find all marine creatures hidden in the corners and edges of the site!', 'info');
+        });
+        
         document.body.appendChild(counter);
     }
     
@@ -719,7 +792,8 @@ function initializeMarineEasterEggs() {
     function updateDiscoveryCounter(total, found) {
         const counter = document.querySelector('.discovery-counter');
         if (counter) {
-            counter.querySelector('span:last-child').textContent = `${found}/${total} discovered`;
+            // Update the text (second span, not the last one because we've added a reset button)
+            counter.querySelector('span:nth-child(2)').textContent = `${found}/${total} discovered`;
             
             // Highlight when updated
             counter.style.transform = 'scale(1.2)';
@@ -729,6 +803,13 @@ function initializeMarineEasterEggs() {
             setTimeout(() => {
                 counter.style.transform = 'scale(1)';
             }, 300);
+            
+            // Show special message if all found
+            if (found === total) {
+                setTimeout(() => {
+                    showNotification('🎉 Congratulations! You found all the hidden marine creatures! 🎉', 'success');
+                }, 500);
+            }
         }
     }
     
@@ -789,12 +870,17 @@ function initializeMarineEasterEggs() {
         }
         
         @keyframes pulseHint {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
-            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.2; }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.4; }
+        }
+        
+        @keyframes pulseZone {
+            0% { opacity: 0.5; box-shadow: 0 0 10px rgba(100, 181, 246, 0.2); }
+            100% { opacity: 0.8; box-shadow: 0 0 20px rgba(100, 181, 246, 0.4); }
         }
         
         .creature-zone {
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
         
         .creature-zone:hover {
@@ -805,6 +891,23 @@ function initializeMarineEasterEggs() {
             display: none;
             cursor: pointer;
             transition: transform 0.3s ease, opacity 0.5s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            z-index: 30;
+        }
+        
+        .discovery-message {
+            font-weight: bold;
+            z-index: 9999;
+        }
+        
+        .discovery-counter {
+            z-index: 9999;
+            animation: pulseZone 2s infinite alternate;
         }
     `;
     document.head.appendChild(styleSheet);
