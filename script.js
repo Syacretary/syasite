@@ -19,9 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize floating chat
     initializeFloatingChat();
     
-    // Initialize dynamic mood color palette
-    initializeDynamicMoodColors();
-    
     // Listen for orientation changes
     window.addEventListener('resize', setOrientationClass);
 });
