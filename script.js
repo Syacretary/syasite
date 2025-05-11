@@ -1,3 +1,14 @@
+// Minigame Variables
+const gameArea = document.getElementById('piano-game-area');
+const scoreDisplay = document.getElementById('piano-score');
+const gameEndMessage = document.getElementById('piano-game-end-message');
+const startGameButton = document.getElementById('start-piano-game');
+
+let score = 0;
+let tileSpeed = 200; // Initial speed in milliseconds per pixel
+let gameInterval;
+let tileInterval;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize page navigation
     initializeNavigation();
@@ -21,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Listen for orientation changes
     window.addEventListener('resize', setOrientationClass);
+
+    // Initialize Piano Tiles Minigame
+    initializePianoTiles();
 });
 
 // Function to set the orientation class on the body element
@@ -625,3 +639,126 @@ ${formattedHistory}
         }
     }
 }
+
+// Piano Tiles Minigame Logic
+function initializePianoTiles() {
+    if (startGameButton && gameArea && scoreDisplay && gameEndMessage) {
+        startGameButton.addEventListener('click', startGame);
+    }
+}
+
+function startGame() {
+    // Reset game state
+    score = 0;
+    tileSpeed = 200;
+    scoreDisplay.textContent = score;
+    gameArea.innerHTML = ''; // Clear any existing tiles
+    gameEndMessage.style.display = 'none'; // Hide end message
+
+    // Show game area
+    document.getElementById('piano-tiles-game').classList.add('active');
+    document.getElementById('home').classList.remove('active'); // Assuming game starts from home
+
+    // Start generating and moving tiles
+    tileInterval = setInterval(createTileRow, 1500); // Generate new row every 1.5 seconds
+    gameInterval = setInterval(moveTiles, 10); // Move tiles every 10ms
+}
+
+function createTileRow() {
+    const row = document.createElement('div');
+    row.classList.add('piano-tile-row');
+
+    // Randomly determine which tile will be the clickable one
+    const correctTileIndex = Math.floor(Math.random() * 4); // 4 tiles per row
+
+    for (let i = 0; i < 4; i++) {
+        const tile = document.createElement('div');
+        tile.classList.add('piano-tile');
+        if (i === correctTileIndex) {
+            tile.classList.add('correct');
+            tile.addEventListener('click', handleTileClick);
+        } else {
+             // Add click listener to wrong tiles to end the game
+            tile.addEventListener('click', function() {
+                endGame(false); // False indicates a wrong click
+            });
+        }
+        row.appendChild(tile);
+    }
+    gameArea.appendChild(row);
+}
+
+function moveTiles() {
+    const rows = gameArea.querySelectorAll('.piano-tile-row');
+    const gameAreaHeight = gameArea.clientHeight;
+
+    rows.forEach(row => {
+        const currentTop = parseFloat(row.style.top) || 0;
+        const newTop = currentTop + (10 / tileSpeed) * 100; // Calculate movement based on speed
+        row.style.top = `${newTop}px`;
+
+        // Check if the correct tile passed the bottom without being clicked
+        if (newTop > gameAreaHeight) {
+             const correctTile = row.querySelector('.piano-tile.correct');
+            if (correctTile && !correctTile.classList.contains('clicked')) {
+                endGame(true); // True indicates a missed tile
+            }
+            row.remove(); // Remove the row once it's off-screen
+        }
+    });
+
+    // Increase difficulty (increase speed)
+    tileSpeed = Math.max(50, tileSpeed - 0.05); // Increase speed gradually, with a minimum speed
+}
+
+function handleTileClick(event) {
+    const clickedTile = event.target;
+
+    // Only register click if it's a correct tile and hasn't been clicked
+    if (clickedTile.classList.contains('correct') && !clickedTile.classList.contains('clicked')) {
+        clickedTile.classList.add('clicked');
+        clickedTile.style.backgroundColor = '#4CAF50'; // Green for correct click
+        score++;
+        scoreDisplay.textContent = score;
+
+        // Optional: Remove the tile or row after a correct click
+        // clickedTile.parentElement.remove();
+    } else if (!clickedTile.classList.contains('correct')) {
+        endGame(false); // Clicked a wrong tile
+    }
+}
+
+function endGame(missedTile) {
+    clearInterval(gameInterval);
+    clearInterval(tileInterval);
+
+    // Show game end message
+    gameEndMessage.style.display = 'block';
+    if (missedTile) {
+        gameEndMessage.textContent = `Game Over! You missed a tile. Your score: ${score}`;
+    } else {
+        gameEndMessage.textContent = `Game Over! You clicked the wrong tile. Your score: ${score}`;
+    }
+
+    // Add a button to restart or go home
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Play Again';
+    restartButton.classList.add('game-button');
+    restartButton.addEventListener('click', startGame);
+
+    const homeButton = document.createElement('button');
+    homeButton.textContent = 'Back Home';
+    homeButton.classList.add('game-button');
+    homeButton.addEventListener('click', function() {
+        document.getElementById('piano-tiles-game').classList.remove('active');
+        document.getElementById('home').classList.add('active');
+        gameArea.innerHTML = ''; // Clear tiles when going home
+        gameEndMessage.style.display = 'none'; // Hide end message
+    });
+
+    // Clear previous buttons and add new ones
+    gameEndMessage.querySelectorAll('.game-button').forEach(button => button.remove());
+    gameEndMessage.appendChild(restartButton);
+    gameEndMessage.appendChild(homeButton);
+}
+
