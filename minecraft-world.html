@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Minecraft World | Syacretary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-detail.css">
+    <link rel="stylesheet" href="minecraft-world.css">
+</head>
+<body>
+    <!-- Ocean Animation Background -->
+    <div class="ocean-container">
+        <div class="ocean-waves"></div>
+    </div>
+    
+    <!-- Empty Space -->
+    <div class="empty-space"></div>
+    
+    <!-- Credits near footer -->
+    <div class="ocean-credits">
+        <p>powered by Replit</p>
+        <p>overall ideas by Syacretary</p>
+    </div>
+    
+    <!-- Marine Creatures Animation -->
+    <div class="marine-animation">
+        <div class="fish fish-1"></div>
+        <div class="fish fish-2"></div>
+        <div class="fish fish-3"></div>
+        <div class="fish-group">
+            <div class="fish-mini fish-mini-1"></div>
+            <div class="fish-mini fish-mini-2"></div>
+            <div class="fish-mini fish-mini-3"></div>
+            <div class="fish-mini fish-mini-4"></div>
+            <div class="fish-mini fish-mini-5"></div>
+        </div>
+        <div class="jellyfish"></div>
+        <div class="octopus"></div>
+        <div class="seahorse"></div>
+        <div class="bubbles">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="bubble bubble-5"></div>
+            <div class="bubble bubble-6"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="minecraft-world" class="page active">
+            <div class="content">
+                <div class="back-button" onclick="window.location.href='/'">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                
+                <div class="project-header">
+                    <h2>[World Title]</h2>
+                    <div class="project-subtitle">[World Description]</div>
+                </div>
+                
+                <div class="project-article">
+                    <div class="project-image">
+                        <div class="screenshot-gallery">
+                            <img src="[screenshot1.jpg]" alt="Minecraft World Screenshot 1" class="featured-image">
+                            <img src="[screenshot2.jpg]" alt="Minecraft World Screenshot 2" class="featured-image">
+                            <img src="[screenshot3.jpg]" alt="Minecraft World Screenshot 3" class="featured-image">
+                        </div>
+                    </div>
+                    
+                    <div class="project-description">
+                        <h3><i class="fas fa-cube"></i> Minecraft Version</h3>
+                        <p>[Version Number]</p>
+
+                        <h3><i class="fas fa-user"></i> Author / Builder</h3>
+                        <p>[Author Name]</p>
+                        
+                        <div class="download-section">
+                            <h3><i class="fas fa-download"></i> Download World</h3>
+                            <div class="file-info">
+                                <p><strong>File Name:</strong> <span id="file-name"></span></p>
+                                <p><strong>File Size:</strong> <span id="file-size"></span></p>
+                                <p><strong>File Format:</strong> <span id="file-format"></span></p>
+                            </div>
+                            <a href="[path/to/your/world.mcworld]" class="download-button" download>
+                                <i class="fas fa-download"></i>
+                                <span>Download</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="minecraft-world.js"></script>
+</body>
+</html>

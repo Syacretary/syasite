@@ -469,7 +469,7 @@ function initializeFloatingChat() {
     if (!chatButton || !chatBox) return; // Exit if elements don't exist
     
     // Gemini API setup
-    const API_KEY = "AIzaSyA_LdQ2b3ZRi7Llsf2AWlXMmxT67cWjhVU"; // This will be replaced by the actual API key from environment
+    const API_KEY = "AIzaSyBkb-HdllymSRYBQnnvPcHm_F9L9mY7Jro"; // This will be replaced by the actual API key from environment
     const MODEL = "gemini-2.0-flash";
     const MAX_HISTORY = 5;
     let conversationHistory = [];
