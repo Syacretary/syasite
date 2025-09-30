@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web | Syacretary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Ocean Animation Background -->
+    <div class="ocean-container">
+        <div class="ocean-waves"></div>
+    </div>
+    
+    <!-- Placeholder untuk area kosong di atas -->
+    <div class="empty-space"></div>
+    
+    <!-- Credits di dekat footer -->
+    <div class="ocean-credits">
+        <p>powered by Replit</p>
+        <p>overall ideas by Syacretary</p>
+    </div>
+    
+    <!-- Marine Creatures Animation -->
+    <div class="marine-animation">
+        <div class="fish fish-1"></div>
+        <div class="fish fish-2"></div>
+        <div class="fish fish-3"></div>
+        <div class="fish fish-group">
+            <div class="fish-mini fish-mini-1"></div>
+            <div class="fish-mini fish-mini-2"></div>
+            <div class="fish-mini fish-mini-3"></div>
+            <div class="fish-mini fish-mini-4"></div>
+            <div class="fish-mini fish-mini-5"></div>
+        </div>
+        <!-- Ikan hiu dihapus karena bermasalah -->
+        <!-- <div class="shark"></div> -->
+        <div class="jellyfish"></div>
+        <div class="octopus"></div>
+        <div class="seahorse"></div>
+        <div class="bubbles">
+            <div class="bubble bubble-1"></div>
+            <div class="bubble bubble-2"></div>
+            <div class="bubble bubble-3"></div>
+            <div class="bubble bubble-4"></div>
+            <div class="bubble bubble-5"></div>
+            <div class="bubble bubble-6"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Home Page (Default) -->
+        <section id="home" class="page active">
+            <div class="content">
+                <h1>hi! <span class="gradient-text">i'm syacretary</span></h1>
+                <p class="subtitle">editor, developer, and ai integration</p>
+                
+                <div class="nav-grid">
+                    <div class="nav-item" data-page="about">
+                        <div class="icon-container">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                        <p>about</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="social">
+                        <div class="icon-container">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <p>social</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="work">
+                        <div class="icon-container">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <p>work</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="faq">
+                        <div class="icon-container">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <p>faq</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="contact">
+                        <div class="icon-container">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p>contact</p>
+                    </div>
+                    
+                    <div class="nav-item" data-page="other">
+                        <div class="icon-container">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                        <p>other</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>About Me</h2>
+                
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="src/about.jpeg" alt="Minimal workspace">
+                    </div>
+                    <div class="about-text">
+                        <p>Don't have a brainstorming life story, but like to explore new ideas and share stories through digital works. If you need help making a... cool (?) visual, let's collab!</p>
+                        
+                        <h3>About Me</h3>
+                        <div class="about-sections">
+                            <div class="about-section">
+                                <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                                <p>SMA Negeri 11 Surabaya | Just a Regular Student
+                                <br>- Learned all this stuff solo with AI's help
+                                <br>- Created 10+ visual concepts (though often procrastinated).</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h4><i class="fas fa-lightbulb"></i> Philosophy</h4>
+                                <p>God might just be the greatest version of human potential - And I keep chasing that through every project and imagination of mine. I'm not looking for answers - I'm looking for better questions.</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h4><i class="fas fa-coffee"></i> Fun Fact</h4>
+                                <p>Once burned someone's laundry, literally torched all their fancy clothes to ashes. Happened when I was 7 years old.</p>
+                            </div>
+                            
+                            <h3>Other Interests</h3>
+                            <div class="about-section">
+                                <h4><i class="fas fa-book"></i> Reading</h4>
+                                <p>I really like reading novels that are written really well! Like the book titled FUNICULI FUNICULA By Toshikazu Kawaguchi! and Alternate By Kato Shigeaki. Besides that, I also like reading manga, even though the genre is a bit "belok"</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h4><i class="fas fa-gamepad"></i> Games</h4>
+                                <p>I don't really like competitive games, I prefer casual story games or even games that keep me racking my brain like Honkai Star Rail and Minecraft. Even so, I still play competitive games like Mobile Legends and other.</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h4><i class="fas fa-brain"></i> Philosophy</h4>
+                                <p>I really like discussing philosophy and even cosmology, searching and asking about the existence of a highest entity? or even searching for the meaning of life itself. but don't forget, don't be stupid</p>
+                            </div>
+                            
+                            <div class="about-section">
+                                <h4><i class="fas fa-star"></i> Imagination</h4>
+                                <p>I usually drown my mind in the world of imagination, finding ideas, even dreams that might come true. This website is also part of imagination!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Page -->
+        <section id="social" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Social Media</h2>
+                
+                <div class="social-links">
+                    <a href="https://instagram.com/syacretary" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb0XjWuGU3BQ7DbATL3U" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Channel</span>
+                    </a>
+                    <a href="https://wa.me/6285607277006" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Bot</span>
+                    </a>
+                    <a href="https://github.com/Syacretary" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Page -->
+        <section id="work" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>My Work</h2>
+                
+                <div class="work-grid">
+                    <div class="work-item" onclick="window.location.href='project-detail.html'">
+                        <div class="work-image">
+                            <img src="src/whatsapp-ai.jpeg" alt="WhatsApp Bot">
+                        </div>
+                        <h3>WhatsApp Multi-Feature Bot</h3>
+                        <p>AI-powered chatbot combining artificial intelligence, social media downloads, and creative tools in one platform. Features include smart chat, media downloader, sticker creator, and utility tools.</p>
+                    </div>
+
+                    <div class="work-item" onclick="window.location.href='visual-editing.html'">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926');">
+                        </div>
+                        <h3>Beat-Synced Visual Editing</h3>
+                        <p>Creative videos synchronized perfectly to music rhythm, featuring dynamic transitions and visual effects that match the beats for a seamless audio-visual experience.</p>
+                    </div>
+                    
+                    <div class="work-item">
+                        <div class="work-image" style="background-image: url('https://images.unsplash.com/photo-1579548122080-c35fd6820ecb');">
+                        </div>
+                        <h3>Gradient Design System</h3>
+                        <p>A comprehensive design system focusing on gradient implementations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can you actually code for real?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I can't really code fluently, I only understand basic JavaScript. Sometimes I use GPT 4o and Replit Agent as my secret weapons to learn and create specific functions. But all the ideas are definitely mine >.<</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What's your proudest creation?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>That complex WhatsApp bot! I stayed up all night figuring out how to integrate it. Also this portfolio website - I changed the concept 3 times until I was super satisfied! Editing? That's basically my emotional outlet.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What apps do you use for editing and coding?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>For visual editing, I'm more comfortable with Alight Motion, and for video editing, Capcut is my go-to. For coding, I usually use Quick Edit - it's free on mobile!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What do you want to be after high school?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I want to study at ITS or ITB, majoring in computer science. On the other hand, my mom recommends BCA School, and my dad wants me to enter a government service school. It's super confusing, maybe I'll just become a GPT doctor ^-^.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Get In Touch</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-message">
+                            <i class="fas fa-comments contact-icon"></i>
+                            <div>
+                                <h3>Let's Connect!</h3>
+                                <p>Interested in working together? Fill out the form and I'll get back to you as soon as possible.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Page -->
+        <section id="other" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Other Projects</h2>
+                
+                <div class="interests">
+                    <div class="interest-item">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI Research</h3>
+                        <p>Exploration of natural language processing and machine learning algorithms for content generation.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile Apps</h3>
+                        <p>Development of intuitive mobile applications focused on productivity and creative expression.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-photo-video"></i>
+                        <h3>Media Processing</h3>
+                        <p>Creating tools for automated video editing and image enhancement using AI technologies.</p>
+                    </div>
+                    
+                    <div class="interest-item">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Design Systems</h3>
+                        <p>Building comprehensive design frameworks for consistent and efficient user interface development.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Piano Tiles Minigame Section -->
+        <section id="piano-tiles-game" class="page">
+            <div class="content">
+                <div class="back-button" data-page="home">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <h2>Piano Tiles</h2>
+                <div id="game-area">
+                    <!-- Tiles will be generated here by JavaScript -->
+                </div>
+                <div id="score">Score: 0</div>
+                <button id="start-game-button">Start Game</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Chat Widget -->
+    <div id="chat-widget" class="chat-widget">
+        <div class="chat-button" id="chat-button">
+            (>.<)
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h3>Chat with Syartificial</h3>
+                <button class="close-chat" id="close-chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot">
+                    <div class="message-content">Hi there! I'm Syartificial. How can I help you today?</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-message" placeholder="Type your message..." aria-label="Type your message">
+                <button id="send-message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
